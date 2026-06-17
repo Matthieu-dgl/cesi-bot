@@ -96,19 +96,19 @@ async def cesihelp(interaction: discord.Interaction):
     
     embed.add_field(
         name="1️⃣ `/create_channel [channel_name]`",
-        value="Crée instantanément un salon textuel secret dans la catégorie dédiée.\n*Exemple : `/create_channel channel_name: usine-satisfactory`*",
+        value="Crée instantanément un salon textuel secret dans la catégorie dédiée.\n*Exemple : `/create_channel channel_name: cube 2`*",
         inline=False
     )
     
     embed.add_field(
         name="2️⃣ `/add_member [member]`",
-        value="Donne les clés de ton salon à un autre utilisateur.\n*Exemple : `/add_member member: @Lamia`*",
+        value="Donne les clés de ton salon à un autre utilisateur.\n*Exemple : `/add_member member: @Matthieu`*",
         inline=False
     )
     
     embed.add_field(
         name="3️⃣ `/remove_member [member]`",
-        value="Retire l'accès d'une personne à ton salon.\n*Exemple : `/remove_member member: @Evan`*",
+        value="Retire l'accès d'une personne à ton salon.\n*Exemple : `/remove_member member: @Arthur`*",
         inline=False
     )
     
