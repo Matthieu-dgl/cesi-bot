@@ -53,3 +53,19 @@ async def add_member(interaction: discord.Interaction, member: discord.Member):
 
 if __name__ == "__main__":
     bot.run(TOKEN)
+
+@bot.tree.command(name="remove_member", description="Retire l'accès d'un membre à ce salon textuel")
+async def remove_member(interaction: discord.Interaction, member: discord.Member):
+    channel = interaction.channel
+    
+    if channel.permissions_for(interaction.user).manage_channels:
+        
+        if member == interaction.user:
+            await interaction.response.send_message("❌ Tu ne peux pas te retirer toi-même de ton propre salon !", ephemeral=True)
+            return
+            
+        await channel.set_permissions(member, overwrite=None)
+        await interaction.response.send_message(f"🚪 {member.mention} a été retiré du salon.")
+        
+    else:
+        await interaction.response.send_message("❌ Tu n'es pas le propriétaire de ce salon, tu ne peux virer personne.", ephemeral=True)
