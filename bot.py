@@ -18,7 +18,7 @@ async def on_ready():
     print(f'Bot connecté et prêt : {bot.user}')
 
 @bot.tree.command(name="create_channel", description="Crée un salon textuel privé dont tu es le propriétaire")
-async def creer_salon(interaction: discord.Interaction, nom_du_salon: str):
+async def creer_salon(interaction: discord.Interaction, name: str):
     guild = interaction.guild
     
     overwrites = {
@@ -37,7 +37,7 @@ async def creer_salon(interaction: discord.Interaction, nom_du_salon: str):
 
 
 @bot.tree.command(name="add_member", description="Donne l'accès à un membre pour le salon textuel actuel")
-async def ajouter_membre(interaction: discord.Interaction, membre: discord.Member):
+async def ajouter_membre(interaction: discord.Interaction, member: discord.Member):
     channel = interaction.channel
     
     if channel.permissions_for(interaction.user).manage_channels:
