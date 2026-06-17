@@ -85,5 +85,39 @@ async def delete_channel(interaction: discord.Interaction):
         
     else:
         await interaction.response.send_message("❌ Tu n'es pas le propriétaire de ce salon, tu ne peux pas le supprimer.", ephemeral=True)
+
+@bot.tree.command(name="cesihelp", description="Affiche la liste des commandes et comment les utiliser")
+async def cesihelp(interaction: discord.Interaction):
+    embed = discord.Embed(
+        title="🛠️ Guide du Gestionnaire de Salons",
+        description="Voici comment créer et gérer tes espaces privés de travail ou de jeu :",
+        color=discord.Color.blue()
+    )
+    
+    embed.add_field(
+        name="1️⃣ `/create_channel [channel_name]`",
+        value="Crée instantanément un salon textuel secret dans la catégorie dédiée.\n*Exemple : `/create_channel channel_name: usine-satisfactory`*",
+        inline=False
+    )
+    
+    embed.add_field(
+        name="2️⃣ `/add_member [member]`",
+        value="Donne les clés de ton salon à un autre utilisateur.\n*Exemple : `/add_member member: @Lamia`*",
+        inline=False
+    )
+    
+    embed.add_field(
+        name="3️⃣ `/remove_member [member]`",
+        value="Retire l'accès d'une personne à ton salon.\n*Exemple : `/remove_member member: @Evan`*",
+        inline=False
+    )
+    
+    embed.add_field(
+        name="4️⃣ `/delete_channel`",
+        value="Supprime définitivement le salon actuel. (Uniquement possible si tu en es le créateur et qu'il est dans la bonne catégorie).",
+        inline=False
+    )
+    await interaction.response.send_message(embed=embed, ephemeral=True)
+
 if __name__ == "__main__":
     bot.run(TOKEN)
