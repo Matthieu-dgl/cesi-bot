@@ -39,7 +39,7 @@ async def create_channel(interaction: discord.Interaction, channel_name: str):
         category=interaction.channel.category
     )
     
-await interaction.response.send_message(f"✅ Ton espace privé {channel.mention} a été créé !", ephemeral=True)
+    await interaction.response.send_message(f"✅ Ton espace privé {channel.mention} a été créé !", ephemeral=True)
 
 @bot.tree.command(name="add_member", description="Donne l'accès à un membre pour le salon textuel actuel")
 async def add_member(interaction: discord.Interaction, member: discord.Member):
