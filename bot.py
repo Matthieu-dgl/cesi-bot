@@ -55,9 +55,6 @@ async def add_member(interaction: discord.Interaction, member: discord.Member):
     else:
         await interaction.response.send_message("❌ Tu n'as pas l'autorisation d'ajouter des membres dans ce salon.", ephemeral=True)
 
-if __name__ == "__main__":
-    bot.run(TOKEN)
-
 @bot.tree.command(name="remove_member", description="Retire l'accès d'un membre à ce salon textuel")
 async def remove_member(interaction: discord.Interaction, member: discord.Member):
     channel = interaction.channel
@@ -86,3 +83,6 @@ async def delete_channel(interaction: discord.Interaction):
         
     else:
         await interaction.response.send_message("❌ Tu n'es pas le propriétaire de ce salon, tu ne peux pas le supprimer.", ephemeral=True)
+
+if __name__ == "__main__":
+    bot.run(TOKEN)
