@@ -17,7 +17,7 @@ bot = PrivateRoomBot()
 async def on_ready():
     print(f'Bot connecté et prêt : {bot.user}')
 
-@bot.tree.command(name="creer_salon", description="Crée un salon textuel privé dont tu es le propriétaire")
+@bot.tree.command(name="create_channel", description="Crée un salon textuel privé dont tu es le propriétaire")
 async def creer_salon(interaction: discord.Interaction, nom_du_salon: str):
     guild = interaction.guild
     
@@ -36,7 +36,7 @@ async def creer_salon(interaction: discord.Interaction, nom_du_salon: str):
     await interaction.response.send_message(f"✅ Ton espace privé {channel.mention} a été créé !", ephemeral=True)
 
 
-@bot.tree.command(name="ajouter_membre", description="Donne l'accès à un membre pour le salon textuel actuel")
+@bot.tree.command(name="add_member", description="Donne l'accès à un membre pour le salon textuel actuel")
 async def ajouter_membre(interaction: discord.Interaction, membre: discord.Member):
     channel = interaction.channel
     
