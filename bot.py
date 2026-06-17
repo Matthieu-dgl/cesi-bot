@@ -72,14 +72,18 @@ async def remove_member(interaction: discord.Interaction, member: discord.Member
 async def delete_channel(interaction: discord.Interaction):
     channel = interaction.channel
     
+    TARGET_CATEGORY_ID = 1516789211683098665
+    
+    if channel.category_id != TARGET_CATEGORY_ID:
+        await interaction.response.send_message("❌ Par sécurité, ce bot ne peut supprimer que les salons situés dans la catégorie des travaux de groupes.", ephemeral=True)
+        return # Le "return" arrête immédiatement la fonction ici
+    
     if channel.permissions_for(interaction.user).manage_channels:
         
         await interaction.response.send_message("💥 Suppression du salon en cours...", ephemeral=True)
-        
         await channel.delete()
         
     else:
         await interaction.response.send_message("❌ Tu n'es pas le propriétaire de ce salon, tu ne peux pas le supprimer.", ephemeral=True)
-
 if __name__ == "__main__":
     bot.run(TOKEN)
