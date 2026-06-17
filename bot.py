@@ -9,10 +9,7 @@ class PrivateRoomBot(commands.Bot):
         super().__init__(command_prefix="!", intents=discord.Intents.all())
 
     async def setup_hook(self):
-        server = 1430108939827023997
-        guild = discord.Object(id=server)
-        self.tree.copy_global_to(guild=guild)
-        await self.tree.sync(guild=guild)
+        await self.tree.sync()
 
 bot = PrivateRoomBot()
 
