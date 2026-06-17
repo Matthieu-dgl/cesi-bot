@@ -17,10 +17,11 @@ bot = PrivateRoomBot()
 async def on_ready():
     print(f'Bot connecté et prêt : {bot.user}')
 
-@bot.tree.command(name="create_channel", description="Crée un salon textuel privé dont tu es le propriétaire")
-async def creer_salon(interaction: discord.Interaction, name: str):
+@bot.tree.command(name="create_channel", description="Crée un salon textuel privé")
+async def create_channel(interaction: discord.Interaction, channel_name: str):
     guild = interaction.guild
     
+    # Configuration des permissions
     overwrites = {
         guild.default_role: discord.PermissionOverwrite(read_messages=False, view_channel=False),
         guild.me: discord.PermissionOverwrite(read_messages=True, view_channel=True, manage_channels=True),
@@ -32,13 +33,16 @@ async def creer_salon(interaction: discord.Interaction, name: str):
         )
     }
     
-    channel = await guild.create_text_channel(name=create_channel, overwrites=overwrites, category=interaction.channel.category)
+    channel = await guild.create_text_channel(
+        name=channel_name, 
+        overwrites=overwrites, 
+        category=interaction.channel.category
+    )
     
-    await interaction.response.send_message(f"✅ Ton espace privé {channel.mention} a été créé !", ephemeral=True)
-
+await interaction.response.send_message(f"✅ Ton espace privé {channel.mention} a été créé !", ephemeral=True)
 
 @bot.tree.command(name="add_member", description="Donne l'accès à un membre pour le salon textuel actuel")
-async def ajouter_membre(interaction: discord.Interaction, member: discord.Member):
+async def add_member(interaction: discord.Interaction, member: discord.Member):
     channel = interaction.channel
     
     if channel.permissions_for(interaction.user).manage_channels:
