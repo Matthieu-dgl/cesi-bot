@@ -32,7 +32,7 @@ async def creer_salon(interaction: discord.Interaction, name: str):
         )
     }
     
-    channel = await guild.create_text_channel(name=nom_du_salon, overwrites=overwrites, category=interaction.channel.category)
+    channel = await guild.create_text_channel(name=create_channel, overwrites=overwrites, category=interaction.channel.category)
     
     await interaction.response.send_message(f"✅ Ton espace privé {channel.mention} a été créé !", ephemeral=True)
 
@@ -42,8 +42,8 @@ async def ajouter_membre(interaction: discord.Interaction, member: discord.Membe
     channel = interaction.channel
     
     if channel.permissions_for(interaction.user).manage_channels:
-        await channel.set_permissions(membre, read_messages=True, view_channel=True, send_messages=True)
-        await interaction.response.send_message(f"👋 Bienvenue {membre.mention} ! Tu as été ajouté par {interaction.user.mention}.")
+        await channel.set_permissions(member, read_messages=True, view_channel=True, send_messages=True)
+        await interaction.response.send_message(f"👋 Bienvenue {member.mention} ! Tu as été ajouté par {interaction.user.mention}.")
     else:
         await interaction.response.send_message("❌ Tu n'as pas l'autorisation d'ajouter des membres dans ce salon.", ephemeral=True)
 
