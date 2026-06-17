@@ -21,7 +21,8 @@ async def on_ready():
 async def create_channel(interaction: discord.Interaction, channel_name: str):
     guild = interaction.guild
     
-    # Configuration des permissions
+    target_category = guild.get_channel(1516789211683098665)
+    
     overwrites = {
         guild.default_role: discord.PermissionOverwrite(read_messages=False, view_channel=False),
         guild.me: discord.PermissionOverwrite(read_messages=True, view_channel=True, manage_channels=True),
@@ -36,7 +37,7 @@ async def create_channel(interaction: discord.Interaction, channel_name: str):
     channel = await guild.create_text_channel(
         name=channel_name, 
         overwrites=overwrites, 
-        category=interaction.channel.category
+        category=target_category
     )
     
     await interaction.response.send_message(f"✅ Ton espace privé {channel.mention} a été créé !", ephemeral=True)
@@ -69,3 +70,16 @@ async def remove_member(interaction: discord.Interaction, member: discord.Member
         
     else:
         await interaction.response.send_message("❌ Tu n'es pas le propriétaire de ce salon, tu ne peux virer personne.", ephemeral=True)
+
+@bot.tree.command(name="delete_channel", description="Supprime définitivement ce salon textuel")
+async def delete_channel(interaction: discord.Interaction):
+    channel = interaction.channel
+    
+    if channel.permissions_for(interaction.user).manage_channels:
+        
+        await interaction.response.send_message("💥 Suppression du salon en cours...", ephemeral=True)
+        
+        await channel.delete()
+        
+    else:
+        await interaction.response.send_message("❌ Tu n'es pas le propriétaire de ce salon, tu ne peux pas le supprimer.", ephemeral=True)
