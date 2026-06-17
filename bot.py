@@ -29,6 +29,7 @@ async def creer_salon(interaction: discord.Interaction, name: str):
             view_channel=True, 
             send_messages=True, 
             manage_channels=True
+        )
     }
     
     channel = await guild.create_text_channel(name=nom_du_salon, overwrites=overwrites, category=interaction.channel.category)
